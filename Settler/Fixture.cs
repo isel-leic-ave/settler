@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Settler
 {
-    public class Fixture<T>
+    public interface IFixture {
+        Object New();
+    }
+
+    public class Fixture<T> : IFixture
     {
         private readonly Type klass;
 
@@ -16,6 +20,10 @@ namespace Settler
         public T New()
         {
             throw new NotImplementedException();
+        }
+
+        Object IFixture.New() {
+            return this.New();
         }
 
         public Fixture<T> Member(string name, params object [] pool)
