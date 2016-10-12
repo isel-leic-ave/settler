@@ -22,12 +22,12 @@ namespace Settler.Test
         [TestMethod]
         public void TestMember()
         {
-            List<String> expectedNames = new List<string> { "Jose Calhau", "Maria Papoila", "Augusto Seabra" };
-            List<int> expectedNrs = new List<int> { 8713, 2312, 23123, 131, 54534 };
+            String[] expectedNames = { "Jose Calhau", "Maria Papoila", "Augusto Seabra" };
+            Object[] expectedNrs = { 8713, 2312, 23123, 131, 54534 };
             Fixture<Student> fix = AutoFixture
                 .For<Student>()
-                .Member("Name", expectedNames.ToArray()) // Field or property with the name Name
-                .Member("Nr", expectedNrs.ToArray());   // Field or property with the name Nr
+                .Member("Name", expectedNames) // Field or property with the name Name
+                .Member("Nr", expectedNrs);   // Field or property with the name Nr
             Student s = fix.New(); // The properties Name and Nr have one of above values
             CollectionAssert.Contains(expectedNames, s.Name);
             CollectionAssert.Contains(expectedNrs, s.Nr);
